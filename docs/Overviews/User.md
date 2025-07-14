@@ -17,6 +17,17 @@ Essentially, without this "digital ID card," the application wouldn't be able to
 
 ---
 
+## What is its function?
+
+The `User` model is fundamental to several vital operations in the system:
+
+-   **Authentication**: It's the model used by Laravel's authentication system to verify a user's identity upon login (via email, phone number, or Apple ID).
+-   **Authorization**: Through its relationship with Roles and Permissions (via Spatie's `HasRoles` trait), it determines what a user can and cannot access. For example, it checks if the user has the 'admin' role to access the Filament admin panel.
+-   **User Data Storage**: It stores personal information like name, email, avatar, and preferred language.
+-   **Notifications**: It utilizes the `Notifiable` trait, allowing the system to send notifications to users.
+-   **Activity Logging**: It uses the `LogsActivity` trait to track and log significant activities performed by the user.
+-   **Data Relationships**: It acts as a primary link to most other data in the system, such as cycles, favorite articles, shopping carts, and more.
+
 ## Fields
 
 These are the fields in the `users` table, as defined in `schema.dbml`.
