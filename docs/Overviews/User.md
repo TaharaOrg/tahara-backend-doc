@@ -72,33 +72,26 @@ The `User` model contains important business logic beyond simple data storage.
 
 ## Relationships
 
-- **Country** (belongsTo): User's country for localization and regional features
+- **Country** (belongsTo): [Country model](./Country.md) - User's country for localization and regional features
 - **Client** (hasOne): [Client](./Client.md) - Extended health profile for menstrual cycle tracking
-- **Cycles** (hasMany): Individual menstrual cycle records and predictions
-- **Articles** (belongsToMany): Articles user can access or has interacted with
-- **Favourite Articles** (belongsToMany): Articles marked as favorites by the user
-- **Read Articles** (belongsToMany): Articles the user has read (tracking)
+- **Cycles** (hasMany): [Cycle model](./Cycle.md) - Individual menstrual cycle records and predictions
+- **Articles** (belongsToMany): [Article model](./Article.md) - Articles user can access or has interacted with
+- **Favourite Articles** (belongsToMany): [Article model](./Article.md) - Articles marked as favorites by the user
+- **Read Articles** (belongsToMany): [Article model](./Article.md) - Articles the user has read (tracking)
 - **Pregnant Weeks** (hasMany): Pregnancy milestone tracking records
 - **FCM Tokens** (hasMany): Device tokens for push notifications **(Backend)**
-- **Categories** (belongsToMany): User's interest categories for content filtering
+- **Categories** (belongsToMany): [Category model](./Category.md) - User's interest categories for content filtering
 - **Deletion Requests** (hasMany): Account deletion requests **(Backend)**
-- **Audit Logs** (hasMany): Activity and change tracking records **(Backend)**
+- **Audit Logs** (hasMany): Activity logs for change tracking **(Backend)**
 - **Pregnants** (hasMany): Pregnancy tracking records
-- **Days** (hasMany): Daily health and symptom tracking records
-- **Ads/Puzzles** (belongsToMany): Interactive content assignments
-- **Salla Account** (belongsTo): E-commerce integration account
-- **Prizes** (hasMany): Earned rewards and achievements
-- **Carts** (hasMany): Shopping cart items (for e-commerce features)
-- **Chats** (hasMany): Customer support conversations
-- **Special Coupon** (hasOneThrough): Special promotional offers **(Backend)**
-- **Wishes List** (belongsToMany): Saved products for later purchase
+- **Days** (hasMany): Daily symptom tracking records **(Backend)**
+- **Ads/Puzzles** (belongsToMany): Puzzle game engagement tracking **(Backend)**
+- **Salla Account** (belongsTo): E-commerce account linkage for shopping features
+- **Prizes** (hasMany): Contest winnings and rewards **(Backend)**
+- **Carts** (hasMany): Shopping cart items for e-commerce **(Backend)**
+- **Chats** (hasMany): AI chat conversations **(Backend)**
+- **Special Coupon** (hasOneThrough): Won special coupon through prizes **(Backend)**
+- **Wishes List** (belongsToMany): Saved e-commerce products for later purchase
 - **Address** (hasMany): Shipping addresses for e-commerce
 
-## Related Models Navigation
-- **[Client Model →](./Client.md)** - Extended health profile and cycle tracking
-- **Cycle Model** - Individual menstrual cycles and predictions  
-- **Article Model** - Content and educational materials
-- **Country Model** - User location and regionalization
-
 ---
-*Note: Links to related models will be added later once their pages are created.*

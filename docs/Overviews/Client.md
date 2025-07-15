@@ -99,8 +99,7 @@ if ($client->isDaysPastDue() > 3) {
 
 ## Relationships
 
-- **User** (belongsTo): [User](./User.md) - The parent user account
-- **Cycles** (through User): Menstrual cycle records and predictions
-- **Days** (through User): Daily symptom and health data
-- **Pregnant Weeks** (through User): Pregnancy tracking data
-- **Audit Logs** (through User): Activity tracking and changes 
+- **User** (belongsTo): [User model](./User.md) - The base user account that owns this health profile
+- **Cycles** (through User): [Cycle model](./Cycle.md) - Individual menstrual cycles tracked for this client
+
+--- 
