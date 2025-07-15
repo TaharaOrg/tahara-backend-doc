@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunktahara_backend_doc=self.webpackChunktahara_backend_doc||[]).push([[8567],{8567:(e,a,c)=>{c.d(a,{createArchitectureServices:()=>r.S});var r=c(3333);c(9089)}}]);
