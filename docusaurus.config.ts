@@ -5,9 +5,9 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'My Site',
+  title: 'Tahara',
   tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.png',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -59,17 +59,17 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'My Site',
+      title: 'Tahara',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'Tahara Logo',
+        src: 'img/favicon.png',
       },
       items: [
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Docs',
         },
         {
           href: 'https://github.com/facebook/docusaurus',
@@ -85,8 +85,8 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'Docs',
+              to: '/docs/Overviews/User',
             },
           ],
         },
@@ -117,7 +117,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Tahara, Inc. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
