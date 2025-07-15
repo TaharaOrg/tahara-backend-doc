@@ -175,8 +175,8 @@ graph LR
 ## Key Stakeholders
 
 ### 👩‍💼 **Primary Users**
-- **Teenage Girls (Under 18)**: Cycle tracking with age-appropriate educational content
-- **Adult Women (18+)**: Complete health tracking plus e-commerce access
+- **Teenage Girls (Under 18)**: Cycle tracking with age-appropriate content + full store access
+- **Adult Women (18+)**: Complete health tracking with full sensitive content access
 - **Women Trying to Conceive**: Ovulation tracking and fertility planning
 - **Pregnant Women**: Week-by-week pregnancy monitoring and guidance
 
