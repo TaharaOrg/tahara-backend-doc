@@ -20,7 +20,8 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Overviews',
       items: [
-          'Overviews/User'
+          'Overviews/User',
+          'Overviews/Client'
       ],
     }
   ],

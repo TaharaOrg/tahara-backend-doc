@@ -35,6 +35,7 @@ These are the fields in the `users` table, as defined in `schema.dbml`.
 | Field                 | Type        | Description                                                                     |
 | --------------------- | ----------- | ------------------------------------------------------------------------------- |
 | `id`                  | `bigint`    | The unique identifier for the user (Primary Key).                               |
+| `verificationCode`    | `varchar`   | **(Backend)** A temporary code sent to the user's email for verification. It's checked against user input to confirm email ownership. |
 | `name`                | `varchar`   | The user's full name.                                                           |
 | `email`               | `varchar`   | The user's email address. **Logic (Backend)**: An attribute mutator ensures that an empty string is saved as `NULL` in the database for data consistency. Must be unique. |
 | `email_verified_at`   | `timestamp` | **(Backend)** The timestamp when a user's email is confirmed. A `NULL` value indicates an unverified user. This is used by Laravel's `verified` middleware to protect routes and application features, preventing access until the user verifies their email. |
@@ -47,7 +48,9 @@ These are the fields in the `users` table, as defined in `schema.dbml`.
 | `avatar`              | `varchar`   | A link to the user's profile picture.                                           |
 | `remember_token`      | `varchar`   | A token used to remember the user's session on the web ("Remember Me" feature). |
 | `country_id`          | `bigint`    | Foreign key to the `countries` table, identifying the user's country.           |
+| `country_code`        | `varchar`   | **(Backend)** The mobile country code (e.g., "+966") required whenever a mobile number is provided. |
 | `salla_account_id`    | `bigint`    | Foreign key to `salla_accounts`, for linking to a Salla e-commerce account.   |
+| `deleted_salla_account_id` | `bigint` | **(Backend)** An archival field that stores the ID of a Salla account that was previously linked to the user. This is populated automatically by an observer when the `salla_account_id` is changed. |
 | `deleted_at`          | `timestamp` | The timestamp for soft-deleted records, allowing for account restoration.       |
 | `created_at`/`updated_at` | `timestamp` | Timestamps for when the user record was created and last updated.                 |
 
@@ -69,31 +72,33 @@ The `User` model contains important business logic beyond simple data storage.
 
 ## Relationships
 
-The `User` model is the most connected model in the application.
+- **Country** (belongsTo): User's country for localization and regional features
+- **Client** (hasOne): [Client](./Client.md) - Extended health profile for menstrual cycle tracking
+- **Cycles** (hasMany): Individual menstrual cycle records and predictions
+- **Articles** (belongsToMany): Articles user can access or has interacted with
+- **Favourite Articles** (belongsToMany): Articles marked as favorites by the user
+- **Read Articles** (belongsToMany): Articles the user has read (tracking)
+- **Pregnant Weeks** (hasMany): Pregnancy milestone tracking records
+- **FCM Tokens** (hasMany): Device tokens for push notifications **(Backend)**
+- **Categories** (belongsToMany): User's interest categories for content filtering
+- **Deletion Requests** (hasMany): Account deletion requests **(Backend)**
+- **Audit Logs** (hasMany): Activity and change tracking records **(Backend)**
+- **Pregnants** (hasMany): Pregnancy tracking records
+- **Days** (hasMany): Daily health and symptom tracking records
+- **Ads/Puzzles** (belongsToMany): Interactive content assignments
+- **Salla Account** (belongsTo): E-commerce integration account
+- **Prizes** (hasMany): Earned rewards and achievements
+- **Carts** (hasMany): Shopping cart items (for e-commerce features)
+- **Chats** (hasMany): Customer support conversations
+- **Special Coupon** (hasOneThrough): Special promotional offers **(Backend)**
+- **Wishes List** (belongsToMany): Saved products for later purchase
+- **Address** (hasMany): Shipping addresses for e-commerce
 
--   **`address()`**: A `HasMany` relationship with the `Address` model, **to get the user's saved addresses**.
--   **`answers()`**: A `HasMany` relationship with `UserAnswer`, **to retrieve the user's answers to puzzle questions**.
--   **`articles()`**: A `BelongsToMany` relationship with `Article`, **for user interactions with articles**. See also `favourite_articles` and `read_articles`.
--   **`audit_logs()`**: A `HasMany` relationship with `AuditLog`, **to get a history of changes made by the user**.
--   **`carts()`**: A `HasMany` relationship with the `Cart` model, **to retrieve items currently in the user's shopping cart**.
--   **`categories()`**: A `BelongsToMany` relationship with `Category`, **to manage the user's selected categories of interest**.
--   **`chats()`**: A `HasMany` relationship with `Chat`, **to retrieve all chat sessions started by the user**.
--   **`client()`**: A `HasOne` relationship with the `Client` model, **which stores detailed data about the user as a client** (e.g., usage goal, birthdate).
--   **`country()`**: A `BelongsTo` relationship with the `Country` model, **defining the user's country**.
--   **`cycles()`**: A `HasMany` relationship with the `Cycle` model, **to retrieve all menstrual cycles**. This is further refined by:
-    -   `expected_cycles()`: **Returns only cycles of type 'expected'**.
-    -   `actual_cycles()`: **Returns only cycles of type 'actual'**.
--   **`days()`**: A `HasMany` relationship with the `Day` model. **(Backend)** This model serves as a daily record to which a user's general health symptoms (those not tied to a specific cycle) are attached.
--   **`deletion_requests()`**: A `HasMany` relationship with `DeletionRequest`, **to view account deletion requests made by the user**.
--   **`favourite_articles()`**: A `BelongsToMany` relationship with `Article`, **to get the user's list of favorite articles**.
--   **`fcm_tokens()`**: A `HasMany` relationship with `FcmToken`, **to manage notification tokens for the user's devices**.
--   **`pregnants()` & `pregnant_weeks()`**: `HasMany` relationships **for tracking pregnancy periods and weekly progress**.
--   **`prizes()`**: A `HasMany` relationship with `Prize`, **to list all prizes the user has won**.
--   **`read_articles()`**: A `BelongsToMany` relationship with `Article`, **to track which articles the user has read**.
--   **`roles()`**: A `BelongsToMany` relationship (from a trait) **to manage the roles (e.g., 'admin') assigned to the user**.
--   **`sallaAccount()`**: A `BelongsTo` relationship with `SallaAccount`, **to fetch data from the linked "Salla" account**.
--   **`specialCoupon()`**: A `HasOneThrough` relationship that **underpins the `has_won_special_coupon` attribute**.
--   **`wishesList()`**: A `BelongsToMany` relationship with `SallaProduct`, **to manage the user's product wishlist**.
+## Related Models Navigation
+- **[Client Model →](./Client.md)** - Extended health profile and cycle tracking
+- **Cycle Model** - Individual menstrual cycles and predictions  
+- **Article Model** - Content and educational materials
+- **Country Model** - User location and regionalization
 
 ---
-*Note: Links to related models will be added later once their pages are created.* 
+*Note: Links to related models will be added later once their pages are created.*
