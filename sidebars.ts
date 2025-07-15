@@ -15,6 +15,7 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 const sidebars: SidebarsConfig = {
   // By default, Docusaurus generates a sidebar from the docs folder structure
   tutorialSidebar: [
+    'intro',
     {
       type: 'category',
       label: 'Overviews',
@@ -22,10 +23,12 @@ const sidebars: SidebarsConfig = {
         'Overviews/User',
         'Overviews/Client',
         'Overviews/Cycle',
+        'Overviews/CycleDay',
         'Overviews/Article',
         'Overviews/Category',
         'Overviews/Doctor',
         'Overviews/Country',
+        'workflows',
       ],
     },
   ],

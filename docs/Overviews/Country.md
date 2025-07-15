@@ -18,17 +18,18 @@ Think of it as your international assistant that handles all the complex geograp
 
 ## Fields
 
-| Field         | Type        | Description                                                                      |
-|---------------|-------------|----------------------------------------------------------------------------------|
-| `id`          | `bigint`    | Primary key - unique identifier for each country                                 |
-| `name`        | `varchar`   | **Translatable** - Country name in Arabic and English                           |
-| `code`        | `varchar`   | **(Backend)** ISO 3166-1 alpha-2 country code (e.g., 'SA', 'US', 'EG')        |
-| `mobile_code` | `varchar`   | **(Backend)** International dialing code (e.g., '+966', '+1', '+20')           |
-| `currency`    | `varchar`   | **(Backend)** National currency name (e.g., 'Saudi Riyal', 'US Dollar')        |
-| `is_taxable`  | `boolean`   | **(Backend)** Tax requirement flag for e-commerce calculations (default: false) |
-| `created_at`  | `timestamp` | Record creation timestamp                                                        |
-| `updated_at`  | `timestamp` | Record last update timestamp                                                     |
-| `deleted_at`  | `timestamp` | **(Backend)** Soft deletion timestamp for data integrity                        |
+| Field         | Type           | Description                                                                                                    |
+|---------------|----------------|--------------------------------------------------------------------------------------------------------------------------------|
+| `id`          | `bigint`       | Primary key - unique identifier for each country                                                                               |
+| `name`        | `varchar(255)` | **Default country name** - Primary name, typically in Arabic.                                                                  |
+| `name_en`     | `varchar(255)` | **(Backend)** English country name used for localization. Nullable.                                                            |
+| `code`        | `varchar(2)`   | **(Backend)** ISO 3166-1 alpha-2 country code (e.g., 'SA', 'US', 'EG').                                                        |
+| `mobile_code` | `varchar(255)` | **(Backend)** International dialing code (e.g., '+966', '+1', '+20').                                                          |
+| `currency`    | `varchar(255)` | **(Backend)** National currency name (e.g., 'Saudi Riyal', 'US Dollar').                                                       |
+| `is_taxable`  | `tinyint`      | **(Backend)** Tax requirement flag (`0` = no, `1` = yes). Defaults to `0`.                                                     |
+| `created_at`  | `timestamp`    | Record creation timestamp.                                                                                                     |
+| `updated_at`  | `timestamp`    | Record last update timestamp.                                                                                                  |
+| `deleted_at`  | `timestamp`    | **(Backend)** Soft deletion timestamp for data integrity.                                                                      |
 
 ## Business Logic and Special Methods (Backend)
 

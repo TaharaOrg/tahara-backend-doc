@@ -28,3 +28,52 @@
   --ifm-color-primary-lightest: #6ca4b4;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* Mermaid diagram styling */
+.mermaid {
+  text-align: center;
+  margin: 3rem 0;
+  background: #fafafa;
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+  min-height: 400px;
+  font-size: 16px;
+}
+
+/* Increase diagram size on larger screens */
+@media (min-width: 768px) {
+  .mermaid svg {
+    min-height: 500px;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .mermaid svg {
+    min-height: 600px;
+    font-size: 20px;
+  }
+}
+
+/* Improve text readability in mermaid diagrams */
+.mermaid .node text,
+.mermaid .edgeLabel text {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 500;
+}
+
+/* Make sure arrows are visible */
+.mermaid .edgePath path {
+  stroke-width: 2px;
+}
+
+.mermaid .arrowheadPath {
+  fill: #666;
+  stroke: #666;
+  stroke-width: 1px;
+}

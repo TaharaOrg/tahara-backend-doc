@@ -75,6 +75,7 @@ The `User` model contains important business logic beyond simple data storage.
 - **Country** (belongsTo): [Country model](./Country.md) - User's country for localization and regional features
 - **Client** (hasOne): [Client](./Client.md) - Extended health profile for menstrual cycle tracking
 - **Cycles** (hasMany): [Cycle model](./Cycle.md) - Individual menstrual cycle records and predictions
+- **Cycle Days** (through Cycles): [CycleDay model](./CycleDay.md) - Individual days within cycles for detailed tracking
 - **Articles** (belongsToMany): [Article model](./Article.md) - Articles user can access or has interacted with
 - **Favourite Articles** (belongsToMany): [Article model](./Article.md) - Articles marked as favorites by the user
 - **Read Articles** (belongsToMany): [Article model](./Article.md) - Articles the user has read (tracking)

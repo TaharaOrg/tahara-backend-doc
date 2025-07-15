@@ -170,6 +170,6 @@ for ($i = 1; $i <= $day_numbers + 1; $i++) {
 ## Relationships
 
 - **User** (belongsTo): [User model](./User.md) - The user who owns this cycle
-- **Cycle Days** (hasMany): CycleDay - Individual days within this cycle for detailed tracking
+- **Cycle Days** (hasMany): [CycleDay model](./CycleDay.md) - Individual days within this cycle for detailed tracking
 
 ---
