@@ -28,7 +28,6 @@ const sidebars: SidebarsConfig = {
         'Overviews/Category',
         'Overviews/Doctor',
         'Overviews/Country',
-        'workflows',
       ],
     },
   ],
